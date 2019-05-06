@@ -9,3 +9,7 @@ func main() {
 	beego.Run()
 }
 
+//入口初始化函数
+func init()  {
+
+}

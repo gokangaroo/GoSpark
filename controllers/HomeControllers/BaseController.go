@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/beego/i18n"
+	"strings"
 )
 
 type BaseController struct{
@@ -35,5 +36,20 @@ func (this *BaseController) Prepare() {
 	}
 
 	// 3.模板中显示语言，不通过控制器
-	//this.Data["Lang"] = this.Lang
+	this.Data["Lang"] = this.Lang
+}
+
+var LangTypes []string // Languages that are supported.
+func init() {
+	// Initialize language type list.
+	LangTypes = strings.Split(beego.AppConfig.String("lang_types"), "|")
+
+	// Load locale files according to language types.
+	for _, lang := range LangTypes {
+		logs.Trace("Loading language: " + lang)
+		if err := i18n.SetMessage(lang, "conf/"+"locale_"+lang+".ini"); err != nil {
+			logs.Error("Fail to set message file:", err)
+			return
+		}
+	}
 }
