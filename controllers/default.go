@@ -33,7 +33,7 @@ func (c *MainController) Get() {
 	c.TplName = "index.tpl"
 	//中英文转换
 	c.Data["welcome"] = c.Tr("welcome")
-	c.Data["descripition"] = c.Tr("descripition")
+	c.Data["description"] = c.Tr("description")
 	c.Data["site"] = c.Tr("site")
 	c.Data["contact"] = c.Tr("contact")
 }

@@ -14,7 +14,7 @@
 <header>
     <h1 class="logo">{{.welcome}}</h1>
     <div class="description">
-        {{.descripition}}
+        {{.description}}
     </div>
 </header>
 <footer>
