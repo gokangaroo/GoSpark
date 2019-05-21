@@ -56,3 +56,4 @@ GoSpark
 *.lock
 sitemap
 sitemap.xml
+vendor
