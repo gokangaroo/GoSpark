@@ -5,5 +5,5 @@ type AuthController struct {
 }
 
 func (c *AuthController) login(){
-
+	
 }
