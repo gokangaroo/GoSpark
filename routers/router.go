@@ -16,10 +16,12 @@ func init() {
 //前台路由
 func front(){
 	beego.Router("/",&HomeControllers.IndexController{})
-	beego.Router("/login",&HomeControllers.AuthController{},"get:Login")
-	beego.Router("/login",&HomeControllers.AuthController{},"post:PostLogin")
-	beego.Router("/register",&HomeControllers.AuthController{},"post:register")
-	beego.Router("/register",&HomeControllers.AuthController{},"post:PostRegister")
+	beego.Router("/login",&HomeControllers.AuthController{},"get:ShowLogin")
+	beego.Router("/login",&HomeControllers.AuthController{},"post:Login")
+	beego.Router("/register",&HomeControllers.AuthController{},"get:ShowRegister")
+	beego.Router("/register",&HomeControllers.AuthController{},"post:Register")
+	beego.Router("/password/reset",&HomeControllers.AuthController{},"get:ShowPasswordReset")
+	beego.Router("/password/reset",&HomeControllers.AuthController{},"post:PasswordReset")
 }
 //后台路由
 func back()  {

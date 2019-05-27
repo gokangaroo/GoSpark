@@ -6,7 +6,7 @@ import "github.com/astaxie/beego/orm"
 type Profile struct {
 	Id       int    `orm:"column(id);auto"`
 	Position string `orm:"size(16);column(position)"` //职位
-	User     *User  `orm:"reverse(one)"`                     //设置一对一反向关系(可选)
+	User     *User  `orm:"reverse(one)"`              //设置一对一反向关系(可选)
 }
 
 func (t *Profile) TableName() string {

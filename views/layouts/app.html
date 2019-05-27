@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>GoSpark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="GoSpark GoLang交流分享平台"/>
+
+    <link href="{{.TplStatic}}/css/common/bulma.min.css" rel="stylesheet">
+    <link href="{{.TplStatic}}/css/common/index" rel="stylesheet">
+{{.Styles}}
 </head>
 <body>
 
+<div id="app">
+{{template "layouts/_header.html"}}
+    <div class="container">
+        {{.LayoutContent}}
+    </div>
+{{template "layouts/_footer.html"}}
+</div>
+
+{{.Scripts}}
 </body>
 </html>

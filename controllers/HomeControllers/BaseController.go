@@ -37,6 +37,9 @@ func (this *BaseController) Prepare() {
 
 	// 3.模板中显示语言，不通过控制器
 	this.Data["Lang"] = this.Lang
+
+	//当前模板静态文件
+	this.Data["TplStatic"] = "/static/"
 }
 
 var LangTypes []string // Languages that are supported.

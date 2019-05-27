@@ -10,7 +10,11 @@ type IndexController struct{
 	BaseController
 }
 
-func (c *IndexController) Get() {
+func (c *IndexController)  Get(){
+	c.TplName = "home/index.html"
+	c.Layout = "layouts/app.html"
+}
+func (c *IndexController) Test() {
 	o := orm.NewOrm()
 	o.Using("default")
 
