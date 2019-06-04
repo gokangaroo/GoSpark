@@ -4,9 +4,9 @@ import (
 	_ "GoSpark/routers"
 	"github.com/astaxie/beego"
 	"GoSpark/controllers"
+			_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -30,6 +30,9 @@ func init() {
 	dbLink := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", user, password, host, port, database) + "&loc=Asia%2FShanghai"
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", dbLink, maxIdleConn, maxOpenConn)
+
+	//自动建表
+	orm.RunSyncdb("default",true,true)
 
 	if beego.BConfig.RunMode == "dev" {
 		orm.Debug = true
