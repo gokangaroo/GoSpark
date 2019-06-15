@@ -5,6 +5,7 @@ import (
 	"github.com/beego/i18n"
 	"github.com/astaxie/beego/logs"
 	"strings"
+	"html/template"
 )
 
 type BaseController struct {
@@ -40,6 +41,30 @@ func (this *BaseController) Prepare() {
 
 	//当前模板静态文件
 	this.Data["TplStatic"] = "/static/"
+}
+
+//是否已经登录，如果已经登录 则返回用户的id
+func (this *BaseController) CheckLogin() int {
+	uid := this.GetSession("uid")
+	if uid != nil{
+		id,ok := uid.(int)
+		if ok && id>0{
+			return id
+		}
+	}
+	return 0
+}
+
+//防止跨站攻击 在有表单控制器使用  不需要直接在base控制器使用
+func (this *BaseController) Xsrf(){
+	//使用时 直接在表单添加{{.xsrfdata}}
+	this.Data["xsrfdata"] = template.HTML(this.XSRFFormHTML())
+}
+
+//重置cookie
+func (this *BaseController) ResetCookie(){
+	this.Ctx.SetCookie("uid","")
+	this.Ctx.SetCookie("token","")
 }
 
 var LangTypes []string // Languages that are supported.
