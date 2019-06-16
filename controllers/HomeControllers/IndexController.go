@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego/orm"
 	"GoSpark/models"
 	"fmt"
-)
+	)
 
 type IndexController struct{
 	BaseController
@@ -26,7 +26,10 @@ func (c *IndexController) Test() {
 	user.Username = "geekghc"
 	user.Email = "2438462863@qq.com"
 	user.Profile = profile
+	user.Phone = "13151568306"
 
+	//var w io.Writer
+	//orm.DebugLog = orm.NewLog(w)
 
 	fmt.Println(o.Insert(profile))
 	fmt.Println(o.Insert(user))
