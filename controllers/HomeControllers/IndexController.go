@@ -19,6 +19,7 @@ func (c *IndexController) Test() {
 	o := orm.NewOrm()
 	o.Using("default")
 
+
 	profile := new(models.Profile)
 	profile.Position = "Java开发"
 
@@ -34,13 +35,15 @@ func (c *IndexController) Test() {
 	fmt.Println(o.Insert(profile))
 	fmt.Println(o.Insert(user))
 
+	c.Ctx.WriteString("success")
 
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
-	c.TplName = "index.tpl"
+
+	//c.Data["Website"] = "beego.me"
+	//c.Data["Email"] = "astaxie@gmail.com"
+	//c.TplName = "index.tpl"
 	//中英文转换
-	c.Data["welcome"] = c.Tr("welcome")
-	c.Data["description"] = c.Tr("description")
-	c.Data["site"] = c.Tr("site")
-	c.Data["contact"] = c.Tr("contact")
+	//c.Data["welcome"] = c.Tr("welcome")
+	//c.Data["description"] = c.Tr("description")
+	//c.Data["site"] = c.Tr("site")
+	//c.Data["contact"] = c.Tr("contact")
 }

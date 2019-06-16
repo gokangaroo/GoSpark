@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="GoSpark GoLang交流分享平台"/>
 
+    <link href="{{.TplStatic}}css/index.css" rel="stylesheet">
     <link href="{{.TplStatic}}css/common/bulma.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/font-awesome/5.8.2/css/fontawesome.min.css" rel="stylesheet">
+    {{/*<link href="{{.TplStatic}}css/common/fontawesome.css" rel="stylesheet">*/}}
     <link href="{{.TplStatic}}css/home/index.css" rel="stylesheet">
 {{.Styles}}
 </head>
@@ -19,6 +20,7 @@
 {{template "layouts/_footer.html"}}
 </div>
 
+<script defer src="{{.TplStatic}}js/common/fontawesome.min.js"></script>
 {{.Scripts}}
 </body>
 </html>
