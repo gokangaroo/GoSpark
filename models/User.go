@@ -8,16 +8,17 @@ import (
 //用户表
 type User struct {
 	Id       int       `orm:"column(id);auto"`
-	Email    string    `orm:"size(50);unique;column(email);default();"`       //邮箱
-	Avatar   string    `orm:"size(255);unique;column(avatar);default();"`     //头像
-	Password string    `orm:"size(32);column(password)"`                      //密码
-	Username string    `orm:"size(16);unique;column(username)"`               //用户名
-	Intro    string    `orm:"size(255);default();column(intro)"`              //个性签名
+	Email    string    `orm:"column(email);size(255);unique;default();"`      //邮箱
+	Phone    string    `orm:"column(phone);size(64);default()"`       //邮箱
+	Avatar   string    `orm:"column(avatar);size(255);unique;default();"`     //头像
+	Password string    `orm:"column(password);size(255)"`                     //密码
+	Username string    `orm:"column(username);size(255);unique"`              //用户名
+	Intro    string    `orm:"column(intro);size(255);default()"`              //个性签名
 	Post     []*Post   `orm:"reverse(many);on_delete(set_null)"`              //一对多的反向关系 (用户-文章)
-	Profile  *Profile  `orm:"rel(one);"`                   // 一对一(用户-概况)
+	Profile  *Profile  `orm:"rel(one);"`                                      // 一对一(用户-概况)
 	IsActive int       `orm:"column(is_active);default(0)"`                   //是否激活
-	Created  time.Time `orm:"auto_now_add;column(created_at);type(datetime)"` //创建时间
-	Updated  time.Time `orm:"auto_now;column(updated_at);type(datetime)"`     //更新时间
+	Created  time.Time `orm:"column(created_at);auto_now_add;type(datetime)"` //创建时间
+	Updated  time.Time `orm:"column(updated_at);auto_now;type(datetime)"`     //更新时间
 }
 
 func getUser() *User {

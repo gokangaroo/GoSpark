@@ -31,9 +31,6 @@ func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("default", "mysql", dbLink, maxIdleConn, maxOpenConn)
 
-	//自动建表
-	orm.RunSyncdb("default",true,true)
-
 	if beego.BConfig.RunMode == "dev" {
 		orm.Debug = true
 	}
