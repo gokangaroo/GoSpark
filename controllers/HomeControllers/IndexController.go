@@ -13,6 +13,9 @@ type IndexController struct{
 func (c *IndexController)  Get(){
 	c.TplName = "home/index.html"
 	c.Layout = "layouts/app.html"
+	c.LayoutSections = make(map[string]string)
+	c.LayoutSections["Styles"] = "home/_styles.html"
+	c.LayoutSections["Scripts"] = "home/_scripts.html"
 }
 
 func (c *IndexController) Test() {
