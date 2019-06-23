@@ -115,4 +115,94 @@ pre code {
     font-size: 1.875rem;
     letter-spacing: 0.1em;
     color: #22292f;
+    text-align: center;
+}
+.bd-focus{
+    margin: 3rem auto 0;
+    max-width: 1080px;
+}
+.bd-focus .bd-focus-item{
+    border-radius: 6px;
+    padding-top: 1.25rem;
+    position: relative;
+    cursor: pointer;
+}
+.bd-focus-item .title {
+    position: relative;
+    transition-duration: 172ms;
+    transition-property: color;
+}
+.bd-focus-item .title.is-4 {
+    font-size: 1.25rem;
+}
+
+.bd-focus .bd-focus-item .bd-card{
+    padding: .75rem 2rem;
+    border-radius: .5rem;
+}
+.bd-focus .bd-focus-item::before{
+    background-color: #fafafa;
+}
+.bd-focus .bd-focus-item .bd-focus-meta{
+    margin-top: -6px;
+    border: 1px dashed #ccc;
+    border-top: none;
+    padding: 1rem 0;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+.bd-focus-item .bd-card.is-php{
+    background-image: linear-gradient(180deg,#f44881,#ec454f);
+}
+.bd-focus-item .bd-card.is-golang{
+    background-image: linear-gradient(180deg,#21c8f6,#637bff);
+}
+.bd-focus-item .bd-card.is-sql{
+    background-image: linear-gradient(180deg,#6edcc4,#1aab8b);
+}
+.bd-focus-item .bd-card.is-tool{
+    background-image: linear-gradient(180deg,#8b60ed,#b372bd);
+}
+.bd-focus .bd-focus-item .bd-card>h4{
+    line-height: 1.25;
+    text-align: center;
+}
+.bd-focus .bd-focus-item .bd-focus-meta .subtitle{
+    color: #b5b5b5;
+}
+.bd-focus .bd-focus-item:hover .subtitle{
+    color: #4a4a4a;
+}
+.bd-focus-item:nth-child(1):hover .title {
+    color: #ff470f;
+}
+.bd-focus-item:nth-child(2):hover .title {
+    color: #21c8f6;
+}
+.bd-focus-item:nth-child(3):hover .title {
+    color: #6edcc4;
+}
+.bd-focus-item:nth-child(4):hover .title {
+    color: #8b60ed;
+}
+.bd-snippet-preview {
+    padding: 1.5rem;
+}
+.bd-footer-link-title {
+    color: #363636;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.bd-footer-links a {
+    color: currentColor;
+}
+.newfont, .title, a, input {
+    font-family: Helvetica,Tahoma,Arial,STXihei,"\534E\6587\7EC6\9ED1",Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",SimSun,"\5B8B\4F53",Heiti,"\9ED1\4F53",sans-serif;
+}
+.bd-footer-link {
+    margin-top: .5rem;
+}
+.footer>.container>.content{
+    padding: 2em;
+    text-align: center;
 }
