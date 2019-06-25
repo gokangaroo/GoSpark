@@ -81,3 +81,18 @@ func init() {
 		}
 	}
 }
+
+//响应json
+func (c *BaseController) ResponseJson(isSuccess bool,msg string,data ...interface{})  {
+	status := 0
+	if isSuccess{
+		status = 1
+	}
+	ret := map[string]interface{}{"status":status,"message":msg}
+	if len(data)>0{
+		ret["data"] = data[0]
+	}
+	c.Data["json"] = ret
+	c.ServeJSON()
+	c.StopRun()
+}
