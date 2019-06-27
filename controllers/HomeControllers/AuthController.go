@@ -1,43 +1,32 @@
 package HomeControllers
 
-import (
-	"GoSpark/models"
-	"github.com/astaxie/beego/orm"
-)
-
 type AuthController struct {
 	BaseController
 }
 
 func (c *AuthController) Login(){
-	
-}
-
-func (c *AuthController) ShowLogin(){
-	user := models.User{Id:1}
-	o := orm.NewOrm()
-	err := o.Read(&user)
-	if err != nil{
-		panic(err)
-	}else{
-		c.Ctx.WriteString(user.Username)
+	if c.IsLogin > 0{
+		c.Redirect("/user",302)
+		return
 	}
 
-
+	//get请求
+	if c.Ctx.Request.Method == "GET"{
+		c.Data["isUser"]  = true
+		c.Layout = "layouts/app.html"
+		c.TplName = "auth/login.html"
+	}
 }
 
 func (c *AuthController) Register(){
-
+	//get请求
+	if c.Ctx.Request.Method == "GET"{
+		c.Data["isUser"]  = true
+		c.Layout = "layouts/app.html"
+		c.TplName = "auth/register.html"
+		return
+	}
 }
-
-func (c *AuthController) ShowRegister(){
-
-}
-
 func (c *AuthController) PasswordReset(){
-
-}
-
-func (c *AuthController) ShowPasswordReset(){
 
 }

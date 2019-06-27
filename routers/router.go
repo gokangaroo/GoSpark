@@ -16,12 +16,9 @@ func init() {
 func front() {
 	beego.Router("/", &HomeControllers.IndexController{})
 	beego.Router("/test", &HomeControllers.IndexController{}, "get:Test")
-	beego.Router("/login", &HomeControllers.AuthController{}, "get:ShowLogin")
-	beego.Router("/login", &HomeControllers.AuthController{}, "post:Login")
-	beego.Router("/register", &HomeControllers.AuthController{}, "get:ShowRegister")
-	beego.Router("/register", &HomeControllers.AuthController{}, "post:Register")
-	beego.Router("/password/reset", &HomeControllers.AuthController{}, "get:ShowPasswordReset")
-	beego.Router("/password/reset", &HomeControllers.AuthController{}, "post:PasswordReset")
+	beego.Router("/login", &HomeControllers.AuthController{}, "*:Login")
+	beego.Router("/register", &HomeControllers.AuthController{}, "*:Register")
+	beego.Router("/password/reset", &HomeControllers.AuthController{}, "*:PasswordReset")
 }
 
 //后台路由
