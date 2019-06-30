@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="gs-section">
+    <div class="message-container"></div>
+    <div class="section">
+        <div class="container">
+            <div class="content">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
 
-</body>
-</html>
+                        <div class="field">
+                            <label class="label">用户名</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-success" type="text" placeholder="输入用户名" name="username">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                   <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">用户名不合法</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">邮箱</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-danger" type="email" placeholder="输入邮箱地址" name="email">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">邮箱不合法</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">密码</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-danger" type="password" placeholder="输入密码" name="password">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-passport"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">密码格式不合法</p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">确认密码</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-danger" type="password" placeholder="输入密码" name="confirm_password">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-passport"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">两次密码不一样</p>
+                        </div>
+
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link">立即注册</button>
+                                <a href="/login" class="button is-white">已有账号 进行登录</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        <div class="columns">
+                            <div class="column">
+                                <a href="/auth/github" class="button is-dark is-fullwidth">
+                               <span class="icon has-text-white">
+                                   <i class="fab fa-github"></i>
+                               </span>
+                                    <span class="ml-point-3">Github登录</span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="/auth/weibo" class="button is-danger is-fullwidth">
+                               <span class="icon has-text-white">
+                                   <i class="fab fa-weibo"></i>
+                               </span>
+                                    <span class="ml-point-3">微博登录</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

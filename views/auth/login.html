@@ -1,89 +1,70 @@
-<div style="margin-top: 84px;">
+<div class="gs-section">
     <div class="message-container"></div>
     <div class="section">
         <div class="container">
-            <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Text input">
-                </div>
-            </div>
+            <div class="content">
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
 
-            <div class="field">
-                <label class="label">Username</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-                    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-                    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-                </div>
-                <p class="help is-success">This username is available</p>
-            </div>
+                        <div class="field">
+                            <label class="label">邮箱</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-danger" type="email" placeholder="输入邮箱地址" name="email">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">邮箱不合法</p>
+                        </div>
 
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-                    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-                    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-                </div>
-                <p class="help is-danger">This email is invalid</p>
-            </div>
+                        <div class="field">
+                            <label class="label">密码</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input is-danger" type="password" placeholder="输入密码" name="password">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-passport"></i>
+                                </span>
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                            </div>
+                            <p class="help is-danger">密码格式不合法</p>
+                        </div>
 
-            <div class="field">
-                <label class="label">Subject</label>
-                <div class="control">
-                    <div class="select">
-                        <select>
-                            <option>Select dropdown</option>
-                            <option>With options</option>
-                        </select>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link">立即登录</button>
+                                <a href="/reset/password" class="button is-white">忘记密码?</a>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Message</label>
-                <div class="control">
-                    <textarea class="textarea" placeholder="Textarea"></textarea>
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <label class="radio">
-                        <input type="radio" name="question">
-                        Yes
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="question">
-                        No
-                    </label>
-                </div>
-            </div>
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-text">Cancel</button>
+                <div class="columns">
+                    <div class="column is-6 is-offset-3">
+                        <div class="columns">
+                            <div class="column">
+                                <a href="/auth/github" class="button is-dark is-fullwidth">
+                               <span class="icon has-text-white">
+                                   <i class="fab fa-github"></i>
+                               </span>
+                                    <span class="ml-point-3">Github登录</span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="/auth/weibo" class="button is-danger is-fullwidth">
+                               <span class="icon has-text-white">
+                                   <i class="fab fa-weibo"></i>
+                               </span>
+                                    <span class="ml-point-3">微博登录</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
