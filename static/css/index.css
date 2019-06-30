@@ -44,7 +44,22 @@
 .gs-icon-8{
     margin-right: 8px;
 }
+.mr-4-px{
+    margin-right: 4px;
+}
+.mr-6-px{
+    margin-right: 6px;
+}
+.mr-8-px{
+    margin-right: 8px;
+}
+.mr-10-px{
+    margin-right: 10px;
+}
 .gs-section{
     margin-top: 84px;
     min-height: 480px;
+}
+.img-round{
+    border-radius: 50%;
 }

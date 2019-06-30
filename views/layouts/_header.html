@@ -32,16 +32,85 @@
                     <span class="ml-point-3">微信公众号</span>
                 </a>
             </div>
+            <div class="navbar-end" style="display: none;">
+                <a href="/login" class="navbar-item">
+                    <strong>登录</strong>
+                </a>
+                <div class="navbar-item">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <p class="control">
+                            <a href="/register" class="button is-link">
+                                <strong>加入GoSpark</strong>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a href="/login">登录</a>
+                    <a href="/article/create" class="button is-link">发表文章</a>
                 </div>
-                <div class="field is-grouped is-grouped-multiline">
-                    <p class="control">
-                        <a href="/register" class="button is-link">
-                            <strong>加入GoSpark</strong>
+                <a href="/notifications" class="navbar-item">
+                    <span><i class="fas fa-bell"></i></span>
+                </a>
+                <div id="moreDropdown" class="navbar-item has-dropdown is-hoverable">
+                    <a href="/me" class="navbar-link navbar-user">
+                        <span>
+                            <img src="https://cdn.learnku.com/uploads/avatars/8236_1482210847.jpeg!/both/100x100" alt="" class="image is-32x32 avatar img-round mr-10-px">
+                        </span>
+                        GeekGhc
+                    </a>
+                    <div class="navbar-dropdown is-right">
+                        <a href="/me" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-success">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="drop-text">用户面板</span>
+                            </span>
                         </a>
-                    </p>
+                        <a href="/column" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </span>
+                                <span class="drop-text">我的专栏</span>
+                            </span>
+                        </a>
+                        <a href="/collections" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-danger">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="drop-text">我的收藏</span>
+                            </span>
+                        </a>
+                        <a href="/orders" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-grey">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                                <span class="drop-text">我的订单</span>
+                            </span>
+                        </a>
+                        <a href="/setting" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-black">
+                                    <i class="fas fa-cog"></i>
+                                </span>
+                                <span class="drop-text">个人设置</span>
+                            </span>
+                        </a>
+                        <hr class="navbar-divider">
+                        <a href="/logout" class="navbar-item">
+                            <span>
+                                <span class="icon has-text-dark">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span class="drop-text">退出登录</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

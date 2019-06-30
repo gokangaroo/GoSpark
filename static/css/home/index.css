@@ -212,3 +212,9 @@ pre code {
 .custom-section-padding {
     padding: 1rem 1.5rem 3em 1.5em;
 }
+.navbar-link.navbar-user {
+    display: flex;
+}
+#moreDropdown a.navbar-item span.drop-text {
+    margin-left: 0.5em;
+}
