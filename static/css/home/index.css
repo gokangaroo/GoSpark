@@ -206,3 +206,9 @@ pre code {
     padding: 2em;
     text-align: center;
 }
+.custom-hero-padding {
+    padding: 2rem 1.5rem 1em 1.5em;
+}
+.custom-section-padding {
+    padding: 1rem 1.5rem 3em 1.5em;
+}

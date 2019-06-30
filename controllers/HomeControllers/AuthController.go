@@ -28,5 +28,11 @@ func (c *AuthController) Register(){
 	}
 }
 func (c *AuthController) PasswordReset(){
-
+	//get请求
+	if c.Ctx.Request.Method == "GET"{
+		c.Data["isUser"]  = true
+		c.Layout = "layouts/app.html"
+		c.TplName = "auth/password_reset.html"
+		return
+	}
 }
