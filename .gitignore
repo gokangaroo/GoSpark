@@ -57,3 +57,6 @@ GoSpark
 sitemap
 sitemap.xml
 vendor
+
+# golang
+go.sum
