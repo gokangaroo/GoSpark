@@ -1,16 +1,16 @@
 package HomeControllers
 
 import (
-	"github.com/astaxie/beego/orm"
 	"GoSpark/models"
 	"fmt"
-	)
+	"github.com/astaxie/beego/orm"
+)
 
-type IndexController struct{
+type IndexController struct {
 	BaseController
 }
 
-func (c *IndexController)  Get(){
+func (c *IndexController) Get() {
 	c.TplName = "home/index.html"
 	c.Layout = "layouts/app.html"
 	c.LayoutSections = make(map[string]string)
@@ -21,7 +21,6 @@ func (c *IndexController)  Get(){
 func (c *IndexController) Test() {
 	o := orm.NewOrm()
 	o.Using("default")
-
 
 	profile := new(models.Profile)
 	profile.Position = "Java开发"
@@ -39,7 +38,6 @@ func (c *IndexController) Test() {
 	fmt.Println(o.Insert(user))
 
 	c.Ctx.WriteString("success")
-
 
 	//c.Data["Website"] = "beego.me"
 	//c.Data["Email"] = "astaxie@gmail.com"

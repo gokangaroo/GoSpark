@@ -8,7 +8,7 @@ import (
 //用户表
 type User struct {
 	Id       int       `orm:"column(id);auto"`
-	Name     string    `orm:"column(name);size(32);unique"`               //用户名
+	Name     string    `orm:"column(name);size(32);unique"`                   //用户名
 	Username string    `orm:"column(username);size(64);unique"`               //用户名
 	Email    string    `orm:"column(email);size(255);unique;default();"`      //邮箱
 	Phone    string    `orm:"column(phone);size(64);default()"`               //邮箱

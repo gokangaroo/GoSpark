@@ -1,5 +1,5 @@
 package HomeControllers
 
-type UserController struct{
+type UserController struct {
 	BaseController
 }

@@ -1,12 +1,12 @@
 package main
 
 import (
-	_ "GoSpark/routers"
-	"github.com/astaxie/beego"
 	"GoSpark/controllers"
-			_ "github.com/go-sql-driver/mysql"
+	_ "GoSpark/routers"
 	"fmt"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {

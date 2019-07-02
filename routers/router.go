@@ -1,13 +1,12 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
-	"GoSpark/controllers/HomeControllers"
 	"GoSpark/controllers/AdminControllers"
+	"GoSpark/controllers/HomeControllers"
+	"github.com/astaxie/beego"
 )
 
 func init() {
-
 	front()
 	back()
 }

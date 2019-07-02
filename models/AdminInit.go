@@ -2,5 +2,4 @@ package models
 
 func Syncdb() {
 
-
 }

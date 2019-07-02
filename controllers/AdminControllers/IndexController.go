@@ -1,5 +1,5 @@
 package AdminControllers
 
-type IndexController struct{
+type IndexController struct {
 	BaseController
 }

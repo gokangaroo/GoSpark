@@ -2,10 +2,10 @@ package HomeControllers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/beego/i18n"
 	"github.com/astaxie/beego/logs"
-	"strings"
+	"github.com/beego/i18n"
 	"html/template"
+	"strings"
 )
 
 type BaseController struct {
@@ -46,9 +46,9 @@ func (c *BaseController) Prepare() {
 //是否已经登录，如果已经登录 则返回用户的id
 func (c *BaseController) CheckLogin() int {
 	uid := c.GetSession("uid")
-	if uid != nil{
-		id,ok := uid.(int)
-		if ok && id>0{
+	if uid != nil {
+		id, ok := uid.(int)
+		if ok && id > 0 {
 			return id
 		}
 	}
@@ -56,15 +56,15 @@ func (c *BaseController) CheckLogin() int {
 }
 
 //防止跨站攻击 在有表单控制器使用  不需要直接在base控制器使用
-func (c *BaseController) Xsrf(){
+func (c *BaseController) Xsrf() {
 	//使用时 直接在表单添加{{.xsrfdata}}
 	c.Data["xsrfdata"] = template.HTML(c.XSRFFormHTML())
 }
 
 //重置cookie
-func (c *BaseController) ResetCookie(){
-	c.Ctx.SetCookie("uid","")
-	c.Ctx.SetCookie("token","")
+func (c *BaseController) ResetCookie() {
+	c.Ctx.SetCookie("uid", "")
+	c.Ctx.SetCookie("token", "")
 }
 
 var LangTypes []string // Languages that are supported.
@@ -83,13 +83,13 @@ func init() {
 }
 
 //响应json
-func (c *BaseController) ResponseJson(isSuccess bool,msg string,data ...interface{})  {
+func (c *BaseController) ResponseJson(isSuccess bool, msg string, data ...interface{}) {
 	status := 0
-	if isSuccess{
+	if isSuccess {
 		status = 1
 	}
-	ret := map[string]interface{}{"status":status,"message":msg}
-	if len(data)>0{
+	ret := map[string]interface{}{"status": status, "message": msg}
+	if len(data) > 0 {
 		ret["data"] = data[0]
 	}
 	c.Data["json"] = ret
