@@ -56,3 +56,4 @@ vendor
 
 # golang
 go.sum
+main
