@@ -2,6 +2,7 @@ package main
 
 import (
 	"GoSpark/controllers"
+	"GoSpark/helper"
 	_ "GoSpark/routers"
 	"fmt"
 	"github.com/astaxie/beego"
@@ -17,6 +18,10 @@ func main() {
 //入口初始化函数
 func init() {
 	beego.Info("开始启动")
+
+	//初始化日志
+	helper.InitLogs()
+
 	//连接Mysql
 	user := beego.AppConfig.String("db_user")
 	password := beego.AppConfig.String("db_password")
