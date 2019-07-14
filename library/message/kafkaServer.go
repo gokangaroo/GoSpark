@@ -15,9 +15,8 @@ var (
 	wg sync.WaitGroup
 )
 
-/**
- * 同步生产者
- */
+
+// 同步生产者(并发量小时采用)
 func (s *KafkaServer) ProducerSync() error {
 	config := sarama.NewConfig()
 	//等待服务器所有副本都保存成功后的响应
@@ -48,9 +47,7 @@ func (s *KafkaServer) ProducerSync() error {
 	return err
 }
 
-/**
- * 消费者
- */
+// 消费者
 func (s *KafkaServer) Consumer() error {
 	//根据代理地址和配置创建一个消费者
 	consumer,err := sarama.NewConsumer([]string{"127.0.0.1:9092"},nil)

@@ -1,6 +1,7 @@
 package HomeControllers
 
 import (
+	"GoSpark/helper"
 	"GoSpark/models"
 	"fmt"
 	"github.com/astaxie/beego/orm"
@@ -44,6 +45,6 @@ func (c *IndexController) Message() {
 	//kafka := message.KafkaServer{}
 	//error := kafka.ProducerSync()
 	//e := kafka.Consumer()
-	//fmt.Println("",e)
+	helper.Logger.Error("test data")
 	c.Ctx.WriteString("message")
 }
