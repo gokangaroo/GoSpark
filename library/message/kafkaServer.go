@@ -15,7 +15,6 @@ var (
 	wg sync.WaitGroup
 )
 
-
 // 同步生产者(并发量小时采用)
 func (s *KafkaServer) ProducerSync() error {
 	config := sarama.NewConfig()
@@ -26,61 +25,61 @@ func (s *KafkaServer) ProducerSync() error {
 	//是否等待失败成功后的响应
 	config.Producer.Return.Successes = true
 
-
 	msg := &sarama.ProducerMessage{}
 	msg.Topic = "geek-kafka-topic"
 	msg.Value = sarama.StringEncoder("this is a test message")
 	//使用代理地址和配置创建一个同步生产者
-	producer,err := sarama.NewSyncProducer([]string{"127.0.0.1:9092"},config)
-	if err != nil{
-		fmt.Println("producer close err:",err)
+	producer, err := sarama.NewSyncProducer([]string{"127.0.0.1:9092"}, config)
+	if err != nil {
+		fmt.Println("producer close err:", err)
 		return err
 	}
 	defer producer.Close()
 
-	pid,offset,err := producer.SendMessage(msg)
-	if err != nil{
-		fmt.Println("send message failed: ",err)
+	pid, offset, err := producer.SendMessage(msg)
+	if err != nil {
+		fmt.Println("send message failed: ", err)
 		return err
 	}
-	fmt.Printf("pid:%v offset:%\n",pid,offset)
+	fmt.Printf("pid:%v offset:%\n", pid, offset)
 	return err
 }
 
 // 消费者
 func (s *KafkaServer) Consumer() error {
 	//根据代理地址和配置创建一个消费者
-	consumer,err := sarama.NewConsumer([]string{"127.0.0.1:9092"},nil)
-	if err != nil{
+	consumer, err := sarama.NewConsumer([]string{"127.0.0.1:9092"}, nil)
+	if err != nil {
 		return err
 	}
+	fmt.Println("connect success....")
 	//Partitions(topic) 返回topic下的所有分区id
-	partitionList,err := consumer.Partitions("geek-kafka-topic")
-	if err != nil{
+	partitionList, err := consumer.Partitions("geek-kafka-topic")
+	if err != nil {
 		return err
 	}
 
-	for partition := range partitionList{
+	for _, partition := range partitionList {
 		//ConsumePartition 根据topic 分区和给定的偏移量创建相应的分区消费者
 		//如果该分区消费者已经消费了该消息 则返回error
-		//sarama.offsetNew 表明了为最新的消息
-		pc,err := consumer.ConsumePartition("geek-kafka-topic",int32(partition),sarama.OffsetNewest)
-		if err != nil{
+		//sarama.offsetNew 表明了为最新的消息  OffsetOldest 表明从旧的消息
+		pc, err := consumer.ConsumePartition("geek-kafka-topic", int32(partition), sarama.OffsetOldest)
+		if err != nil {
 			return err
 		}
 		defer pc.AsyncClose()
 
 		wg.Add(1)
-		go func(sarama.PartitionConsumer){
+		go func() {
 			defer wg.Done()
 			//Messages() 该方法返回一个消息类型的只读通道 由代理产生
-			for msg := range pc.Messages(){
-				fmt.Printf("%s---Partition:%d, Offset:%d, Key:%s, Value:%s\n", msg.Topic,msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
+			for msg := range pc.Messages() {
+				fmt.Printf("%s---Partition:%d, Offset:%d, Key:%s, Value:%s\n", msg.Topic, msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
 			}
-		}(pc)
+		}()
 	}
 
 	wg.Wait()
-	_ = consumer.Close()
-	return err
+	defer consumer.Close()
+	return nil
 }

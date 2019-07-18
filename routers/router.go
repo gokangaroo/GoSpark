@@ -15,7 +15,8 @@ func init() {
 func front() {
 	beego.Router("/", &HomeControllers.IndexController{})
 	beego.Router("/test", &HomeControllers.IndexController{}, "get:Test")
-	beego.Router("/message", &HomeControllers.IndexController{}, "get:Message")
+	beego.Router("/producer", &HomeControllers.IndexController{}, "get:Producer")
+	beego.Router("/consumer", &HomeControllers.IndexController{}, "get:Consumer")
 	beego.Router("/login", &HomeControllers.AuthController{}, "*:Login")
 	beego.Router("/register", &HomeControllers.AuthController{}, "*:Register")
 	beego.Router("/password/reset", &HomeControllers.AuthController{}, "*:PasswordReset")
