@@ -1,7 +1,6 @@
 package models
 
 import (
-	"github.com/astaxie/beego/orm"
 	"time"
 )
 
@@ -28,8 +27,4 @@ func getUser() *User {
 
 func (t *User) TableName() string {
 	return "user"
-}
-
-func init() {
-	orm.RegisterModel(new(User))
 }

@@ -1,7 +1,5 @@
 package models
 
-import "github.com/astaxie/beego/orm"
-
 //标签表
 type Tag struct {
 	Id    int     `orm:"column(id)"`
@@ -11,7 +9,4 @@ type Tag struct {
 
 func (t *Tag) TableName() string {
 	return "tag"
-}
-func init() {
-	orm.RegisterModel(new(Tag))
 }

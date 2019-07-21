@@ -1,7 +1,5 @@
 package models
 
-import "github.com/astaxie/beego/orm"
-
 //用户概况表
 type Profile struct {
 	Id       int    `orm:"column(id);auto"`
@@ -12,8 +10,4 @@ type Profile struct {
 
 func (t *Profile) TableName() string {
 	return "profile"
-}
-
-func init() {
-	orm.RegisterModel(new(Profile))
 }

@@ -11,14 +11,15 @@ import (
 var Logger = logs.NewLogger()
 
 //初始化日志
-func InitLogs() {
+func InitLogs() error {
 	//创建日志目录
 	if _, err := os.Stat("logs"); err != nil {
 		os.Mkdir("logs", os.ModePerm)
+		return err
 	}
-	var level = 7
+	var level = 4
 	if Debug {
-		level = 4
+		level = 7
 	}
 	maxLines := GetConfigInt64("logs", "max_lines")
 	if maxLines <= 0 {
@@ -29,7 +30,7 @@ func InitLogs() {
 		maxDays = 7
 	}
 	//初始化日志的各种配置
-	LogsConf := fmt.Sprintf(`{"filename":"logs/gospark.log","level":%v,"maxlines":%v,"maxsize":0,"daily":true,"maxdays":%v}`, level, maxLines, maxDays)
+	LogsConf := fmt.Sprintf(`{"filename":"logs/gospark.log","level":%v,"maxlines":%v,"maxsize":0,"daily":true,"color":true,"maxdays":%v}`, level, maxLines, maxDays)
 	Logger.SetLogger(logs.AdapterFile, LogsConf)
 	if Debug {
 		logs.SetLogger(logs.AdapterConsole)
@@ -40,4 +41,5 @@ func InitLogs() {
 	}
 	//显示文件和行号
 	Logger.EnableFuncCallDepth(true)
+	return nil
 }

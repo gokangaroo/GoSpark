@@ -43,10 +43,15 @@ func (c *IndexController) Test() {
 }
 
 func (c *IndexController) Producer() {
-	kafka := message.KafkaServer{}
-	if error := kafka.ProducerSync(); error == nil {
-		helper.Logger.Error("success")
+	val,err :=  helper.Redis.Get("ghc").Result()
+	if err != nil{
+		helper.Logger.Error("something error.....")
 	}
+	fmt.Println(val)
+	//kafka := message.KafkaServer{}
+	//if error := kafka.ProducerSync(); error == nil {
+	//	helper.Logger.Error("success")
+	//}
 	c.Ctx.WriteString("producer")
 }
 

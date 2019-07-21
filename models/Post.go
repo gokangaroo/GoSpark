@@ -1,7 +1,5 @@
 package models
 
-import "github.com/astaxie/beego/orm"
-
 //文章动态表
 type Post struct {
 	Id    int    `orm:"column(id);auto"`
@@ -12,8 +10,4 @@ type Post struct {
 
 func (t *Post) TableName() string {
 	return "post"
-}
-
-func init() {
-	orm.RegisterModel(new(Post))
 }
