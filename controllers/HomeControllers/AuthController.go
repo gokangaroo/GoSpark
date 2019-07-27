@@ -19,6 +19,11 @@ func (c *AuthController) Login() {
 }
 
 func (c *AuthController) Register() {
+	if c.IsLogin > 0 {
+		c.Redirect("/user", 302)
+		return
+	}
+	
 	//get请求
 	if c.Ctx.Request.Method == "GET" {
 		c.Data["isUser"] = true
