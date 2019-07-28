@@ -21,11 +21,15 @@ func (c *AuthController) Login() {
 	}
 }
 
+//用户注册
 func (c *AuthController) Register() {
 	if c.IsLogin > 0 {
 		c.Redirect("/user", 302)
 		return
 	}
+
+
+
 
 	//get请求
 	if c.Ctx.Request.Method == "GET" {
@@ -36,6 +40,8 @@ func (c *AuthController) Register() {
 		return
 	}
 }
+
+//重置密码
 func (c *AuthController) PasswordReset() {
 	//get请求
 	if c.Ctx.Request.Method == "GET" {

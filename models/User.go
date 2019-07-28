@@ -1,6 +1,9 @@
 package models
 
 import (
+	"errors"
+	"github.com/astaxie/beego/orm"
+	"strings"
 	"time"
 )
 
@@ -21,10 +24,30 @@ type User struct {
 	Updated  time.Time `orm:"column(updated_at);auto_now;type(datetime)"`     //更新时间
 }
 
-func getUser() *User {
+func NewUser() *User {
 	return &User{}
+}
+
+func GetTableUser() string {
+	return getTable("user")
 }
 
 func (t *User) TableName() string {
 	return "user"
+}
+
+func (t *User) Reg(username, emil, password string) (error, int) {
+	var (
+		user User
+		o    = orm.NewOrm()
+	)
+	l := strings.Count(username, "") - 1
+	if l < 2 || l > 16 {
+		return errors.New("用户名成都限制在2-16个字符"), 0
+	}
+	if o.QueryTable(GetTableUser()).Filter("Username", username).One(&user); user.Id > 0 {
+		return errors.New("用户名已被注册"), 0
+	}
+	_, err := o.Insert(&user)
+	return err, user.Id
 }
