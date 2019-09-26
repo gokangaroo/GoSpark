@@ -28,13 +28,10 @@ func (c *AuthController) Register() {
 		return
 	}
 
-
-
-
 	//get请求
 	if c.Ctx.Request.Method == "GET" {
 		c.Data["xsrfdata"] = template.HTML(c.XSRFFormHTML())
- 		c.Data["isUser"] = true
+		c.Data["isUser"] = true
 		c.Layout = "layouts/app.html"
 		c.TplName = "auth/register.html"
 		return

@@ -3,9 +3,7 @@ package HomeControllers
 import (
 	"GoSpark/helper"
 	"GoSpark/library/message"
-	"GoSpark/models"
 	"fmt"
-	"github.com/astaxie/beego/orm"
 )
 
 type IndexController struct {
@@ -21,23 +19,6 @@ func (c *IndexController) Get() {
 }
 
 func (c *IndexController) Test() {
-	o := orm.NewOrm()
-	o.Using("default")
-
-	profile := new(models.Profile)
-	profile.Position = "Java开发"
-
-	user := new(models.User)
-	user.Username = "geekghc"
-	user.Email = "2438462863@qq.com"
-	user.Profile = profile
-	user.Phone = "13151568306"
-
-	//var w io.Writer
-	//orm.DebugLog = orm.NewLog(w)
-
-	fmt.Println(o.Insert(profile))
-	fmt.Println(o.Insert(user))
 
 	c.Ctx.WriteString("success")
 }
