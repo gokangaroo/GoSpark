@@ -5,6 +5,11 @@ import (
 	"sync"
 )
 
+const (
+	VERSION               = "1.1"
+	DEFAULT_COOKIE_SECRET = "gospark"
+)
+
 var (
 	//develop mode
 	Debug = beego.AppConfig.String("runmode") == "dev"

@@ -36,7 +36,7 @@ func (t *User) TableName() string {
 	return "user"
 }
 
-func (t *User) Reg(username, emil, password string) (error, int) {
+func (t *User) CreateUser(username, emil, password string, passwordConfirm string) (error, int) {
 	var (
 		user User
 		o    = orm.NewOrm()
@@ -47,6 +47,9 @@ func (t *User) Reg(username, emil, password string) (error, int) {
 	}
 	if o.QueryTable(GetTableUser()).Filter("Username", username).One(&user); user.Id > 0 {
 		return errors.New("用户名已被注册"), 0
+	}
+	if password != passwordConfirm {
+		return errors.New("两次密码不一样"), 0
 	}
 	_, err := o.Insert(&user)
 	return err, user.Id

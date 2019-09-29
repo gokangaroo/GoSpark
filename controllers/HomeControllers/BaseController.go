@@ -1,11 +1,14 @@
 package HomeControllers
 
 import (
+	"GoSpark/helper"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/beego/i18n"
 	"html/template"
 	"strings"
+	"time"
+	"fmt"
 )
 
 type BaseController struct {
@@ -81,6 +84,16 @@ func init() {
 		}
 	}
 }
+
+//设置用户登录的cookie，其实uid是时间戳的加密，而token才是真正的uid
+func (c *BaseController) SetCookieLogin(uid interface{}) {
+	secret := beego.AppConfig.DefaultString("CookieSecret", helper.DEFAULT_COOKIE_SECRET)
+	timestamp := fmt.Sprintf("%v", time.Now().Unix())
+	expire := 3600 * 24 * 365
+	c.Ctx.SetSecureCookie(secret, "uid", timestamp, expire)
+	c.Ctx.SetSecureCookie(secret+timestamp, "token", fmt.Sprintf("%v", uid), expire)
+}
+
 
 //响应json
 func (c *BaseController) ResponseJson(isSuccess bool, msg string, data ...interface{}) {

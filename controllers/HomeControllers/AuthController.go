@@ -1,9 +1,17 @@
 package HomeControllers
 
-import "html/template"
+import (
+	"GoSpark/helper"
+	"GoSpark/models"
+	"html/template"
+)
 
 type AuthController struct {
 	BaseController
+}
+
+func (c *AuthController) Prepare() {
+	c.EnableXSRF = false
 }
 
 func (c *AuthController) Login() {
@@ -36,6 +44,26 @@ func (c *AuthController) Register() {
 		c.TplName = "auth/register.html"
 		return
 	}
+
+	// 验证注册信息
+	username := c.GetString("username")
+	email := c.GetString("email")
+
+	err, uid := models.NewUser().CreateUser(
+		username,
+		email,
+		c.GetString("password"),
+		c.GetString("password_confirmation"))
+	if err != nil || uid == 0 {
+		if err != nil {
+			helper.Logger.Error(err.Error())
+		}
+		c.ResponseJson(false, "注册失败")
+	}
+	c.IsLogin = uid
+	c.SetCookieLogin(uid)
+	c.ResponseJson(true, "用户注册成功"+username)
+
 }
 
 //重置密码
