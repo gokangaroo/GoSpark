@@ -19,7 +19,6 @@ func (c *IndexController) Get() {
 }
 
 func (c *IndexController) Test() {
-
 	c.Ctx.WriteString("success")
 }
 
