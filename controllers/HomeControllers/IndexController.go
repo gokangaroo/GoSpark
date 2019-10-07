@@ -41,5 +41,4 @@ func (c *IndexController) Consumer()  {
 		helper.Logger.Error("success")
 	}
 	c.Ctx.WriteString("consumer")
-
 }
