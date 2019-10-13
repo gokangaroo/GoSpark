@@ -51,6 +51,9 @@ func (t *User) CreateUser(username, emil, password string, passwordConfirm strin
 	if password != passwordConfirm {
 		return errors.New("两次密码不一样"), 0
 	}
+	// 创建 profile
+	profile := new(Profile)
+
 	_, err := o.Insert(&user)
 	return err, user.Id
 }

@@ -57,6 +57,7 @@ func (c *AuthController) Register() {
 	if err != nil || uid == 0 {
 		if err != nil {
 			helper.Logger.Error(err.Error())
+			c.ResponseJson(false, err.Error())
 		}
 		c.ResponseJson(false, "注册失败")
 	}

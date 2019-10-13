@@ -52,6 +52,9 @@ func InitDatabase() error {
 		new(models.Post),
 		new(models.Tag))
 
+	//自动建表
+	orm.RunSyncdb("default",false,true)
+
 	//终端打印sql
 	if beego.BConfig.RunMode == "dev" {
 		orm.Debug = true
