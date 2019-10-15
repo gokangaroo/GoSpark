@@ -8,5 +8,5 @@ type Tag struct {
 }
 
 func (t *Tag) TableName() string {
-	return "tag"
+	return "tags"
 }

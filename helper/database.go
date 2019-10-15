@@ -46,15 +46,12 @@ func InitDatabase() error {
 	}
 
 	//统一注册model
-	orm.RegisterModel(
-		new(models.User),
-		new(models.Profile),
-		new(models.Post),
-		new(models.Tag))
+	orm.RegisterModel(new(models.User), new(models.Post), new(models.Profile), new(models.Tag))
 
 	//自动建表
-	orm.RunSyncdb("default",false,true)
+	orm.RunSyncdb("default",true,true)
 
+	orm.RunCommand()
 	//终端打印sql
 	if beego.BConfig.RunMode == "dev" {
 		orm.Debug = true

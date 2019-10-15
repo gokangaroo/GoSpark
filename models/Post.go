@@ -9,5 +9,5 @@ type Post struct {
 }
 
 func (t *Post) TableName() string {
-	return "post"
+	return "posts"
 }
