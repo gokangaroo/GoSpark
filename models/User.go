@@ -54,12 +54,12 @@ func (t *User) CreateUser(username, emil, password string, passwordConfirm strin
 
 	user = User{Username:username,Email:emil,Password:password}
 	// 创建 profile
-	profile := Profile{Position:""}
+	profile := new(Profile)
 
 	err := o.Begin()
-	user.Profile = &profile
+	user.Profile = profile
 	o.Insert(&user)
-	o.Insert(&profile)
+	o.Insert(profile)
 	if err != nil {
 		err = o.Rollback()
 	} else {
