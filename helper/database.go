@@ -49,7 +49,7 @@ func InitDatabase() error {
 	orm.RegisterModel(new(models.User), new(models.Post), new(models.Profile), new(models.Tag))
 
 	//自动建表
-	orm.RunSyncdb("default",true,true)
+	//orm.RunSyncdb("default",true,true)
 
 	orm.RunCommand()
 	//终端打印sql

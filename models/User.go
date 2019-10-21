@@ -3,6 +3,7 @@ package models
 import (
 	"errors"
 	"github.com/astaxie/beego/orm"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -13,7 +14,7 @@ type User struct {
 	Username string    `orm:"column(username);size(64);unique"`               //用户名
 	Email    string    `orm:"column(email);size(255);unique;default();"`      //邮箱
 	Phone    string    `orm:"column(phone);size(64);default()"`               //邮箱
-	Avatar   string    `orm:"column(avatar);size(255);default();"`     //头像
+	Avatar   string    `orm:"column(avatar);size(255);default();"`            //头像
 	Password string    `orm:"column(password);size(64)"`                      //密码
 	Intro    string    `orm:"column(intro);size(255);default()"`              //个性签名
 	Post     []*Post   `orm:"reverse(many);on_delete(set_null)"`              //一对多的反向关系 (用户-文章)
@@ -52,19 +53,33 @@ func (t *User) CreateUser(username, emil, password string, passwordConfirm strin
 		return errors.New("两次密码不一样"), 0
 	}
 
-	user = User{Username:username,Email:emil,Password:password}
+	user = User{Username: username, Email: emil, Password: password}
 	// 创建 profile
 	profile := new(Profile)
 	profile.Gender = "f"
 
 	err := o.Begin()
 	user.Profile = profile
-	o.Insert(profile)
-	o.Insert(&user)
-	if err != nil {
+	_, err1 := o.Insert(profile)
+	_, err2 := o.Insert(&user)
+	if err1 != nil || err2 != nil {
 		err = o.Rollback()
 	} else {
 		err = o.Commit()
 	}
 	return err, user.Id
+}
+
+// 获取表的字段
+func (u *User) Fields() map[string]string {
+	var fields map[string]string
+	fields = make(map[string]string)
+	v := reflect.ValueOf(u).Elem()
+	k := v.Type()
+	num := v.NumField()
+	for i := 0; i < num; i++ {
+		key := k.Field(i)
+		fields[key.Name] = key.Name
+	}
+	return fields
 }
