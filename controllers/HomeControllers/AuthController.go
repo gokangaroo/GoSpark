@@ -64,7 +64,6 @@ func (c *AuthController) Register() {
 	c.IsLogin = uid
 	c.SetCookieLogin(uid)
 	c.ResponseJson(true, "用户注册成功")
-
 }
 
 //重置密码

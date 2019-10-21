@@ -10,11 +10,10 @@ import (
 //用户表
 type User struct {
 	Id       int       `orm:"column(id);auto"`
-	Name     string    `orm:"column(name);size(32);unique"`                   //用户名
 	Username string    `orm:"column(username);size(64);unique"`               //用户名
 	Email    string    `orm:"column(email);size(255);unique;default();"`      //邮箱
 	Phone    string    `orm:"column(phone);size(64);default()"`               //邮箱
-	Avatar   string    `orm:"column(avatar);size(255);unique;default();"`     //头像
+	Avatar   string    `orm:"column(avatar);size(255);default();"`     //头像
 	Password string    `orm:"column(password);size(64)"`                      //密码
 	Intro    string    `orm:"column(intro);size(255);default()"`              //个性签名
 	Post     []*Post   `orm:"reverse(many);on_delete(set_null)"`              //一对多的反向关系 (用户-文章)
@@ -36,6 +35,7 @@ func (t *User) TableName() string {
 	return "users"
 }
 
+// 创建用户
 func (t *User) CreateUser(username, emil, password string, passwordConfirm string) (error, int) {
 	var (
 		user User
@@ -55,11 +55,12 @@ func (t *User) CreateUser(username, emil, password string, passwordConfirm strin
 	user = User{Username:username,Email:emil,Password:password}
 	// 创建 profile
 	profile := new(Profile)
+	profile.Gender = "f"
 
 	err := o.Begin()
 	user.Profile = profile
-	o.Insert(&user)
 	o.Insert(profile)
+	o.Insert(&user)
 	if err != nil {
 		err = o.Rollback()
 	} else {
