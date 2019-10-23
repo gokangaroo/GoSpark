@@ -37,7 +37,7 @@ func (t *User) TableName() string {
 }
 
 // 创建用户
-func (t *User) CreateUser(username, emil, password string, passwordConfirm string) (error, int) {
+func (m *User) CreateUser(username, emil, password string, passwordConfirm string) (error, int) {
 	var (
 		user User
 		o    = orm.NewOrm()
@@ -71,15 +71,15 @@ func (t *User) CreateUser(username, emil, password string, passwordConfirm strin
 }
 
 // 获取表的字段
-func (u *User) Fields() map[string]string {
+func (m *User) Fields() map[string]string {
 	var fields map[string]string
 	fields = make(map[string]string)
-	v := reflect.ValueOf(u).Elem()
+	v := reflect.ValueOf(m).Elem()
 	k := v.Type()
 	num := v.NumField()
 	for i := 0; i < num; i++ {
 		key := k.Field(i)
-		fields[key.Name] = key.Name
+		fields[key.Name] = key.Type.String()
 	}
 	return fields
 }
