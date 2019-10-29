@@ -83,3 +83,22 @@ func (m *User) Fields() map[string]string {
 	}
 	return fields
 }
+
+// 获取用户除密码之外的信息
+func (m *User) GetById(id interface{}) (params orm.Params, rows int64, err error){
+	var data []orm.Params
+	tables := []string{GetTableUser()+"u",GetTableUser()+"ui"}
+	on := []map[string]string{
+		{"u.Id":"ui.Id"},
+	}
+	fields := map[string][]string{
+		"u":GetFields(NewUser()),
+		"ui":GetFields(NewUser()),
+	}
+	if sql, err := LeftJoinSqlBuild(tables, on, fields, 1, 1, nil, nil, "u.Id=?"); err == nil {
+		if rows, err = orm.NewOrm().Raw(sql, id).Values(&data); err == nil && len(data) > 0 {
+			params = data[0]
+		}
+	}
+	return
+}
