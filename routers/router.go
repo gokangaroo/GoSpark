@@ -20,6 +20,8 @@ func front() {
 	beego.Router("/login", &HomeControllers.AuthController{}, "*:Login")
 	beego.Router("/register", &HomeControllers.AuthController{}, "*:Register")
 	beego.Router("/password/reset", &HomeControllers.AuthController{}, "*:PasswordReset")
+
+	beego.Router("/user/:id",&HomeControllers.UserController{},"get:UserInfo")
 }
 
 //后台路由

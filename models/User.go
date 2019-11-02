@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"github.com/astaxie/beego/orm"
 	"reflect"
 	"strings"
@@ -87,7 +88,7 @@ func (m *User) Fields() map[string]string {
 // 获取用户除密码之外的信息
 func (m *User) GetById(id interface{}) (params orm.Params, rows int64, err error){
 	var data []orm.Params
-	tables := []string{GetTableUser()+"u",GetTableUser()+"ui"}
+	tables := []string{GetTableUser()+" u"}
 	on := []map[string]string{
 		{"u.Id":"ui.Id"},
 	}
@@ -101,4 +102,15 @@ func (m *User) GetById(id interface{}) (params orm.Params, rows int64, err error
 		}
 	}
 	return
+}
+
+// 获取单个用户
+func (m *User) UserInfo(id interface{}) User{
+	var user User
+	err := orm.NewOrm().QueryTable(GetTableUser()).Filter("id",id).One(&user)
+	if err == orm.ErrNoRows {
+		// 没有找到记录
+		fmt.Printf("Not row found")
+	}
+	return user
 }
